@@ -1,7 +1,9 @@
 import random
 
 # Opciones para el jugador
-opciones = ["piedra", "papel", "tijera"]
+opcion_piedra = "piedra"
+opcion_papel = "papel"
+opcion_tijera = "tijera"
 
 # Jugador 1 ingresa su nombre
 nombre_jugador1 = ""
@@ -27,31 +29,34 @@ rondas = 1
 # Bucle para repetir el juego hasta que se alcancen 10 rondas
 while rondas <= 10:
     # Jugador 1 elige
-    jugador1 = input(f"{nombre_jugador1}, elige piedra, papel o tijera: ").lower()
+    jugador1 = input(f"{nombre_jugador1}, ¿elige {opcion_piedra}, {opcion_papel} o {opcion_tijera}?: ").lower()
 
     # Verifica si la opción es válida
-    if jugador1 not in opciones:
-        print("Opción no válida. Por favor, elige piedra, papel o tijera.")
+    while jugador1 not in [opcion_piedra, opcion_papel, opcion_tijera]:
+        jugador1 = input(f"{nombre_jugador1}, opción no válida. ¿Elige {opcion_piedra}, {opcion_papel} o {opcion_tijera}?: ").lower()
+
+    # Jugador 2 elige
+    jugador2 = input(f"{nombre_jugador2}, ¿elige {opcion_piedra}, {opcion_papel} o {opcion_tijera}?: ").lower()
+
+    # Verifica si la opción es válida
+    while jugador2 not in [opcion_piedra, opcion_papel, opcion_tijera]:
+        jugador2 = input(f"{nombre_jugador2}, opción no válida. ¿Elige {opcion_piedra}, {opcion_papel} o {opcion_tijera}?: ").lower()
+
+    # Determina el resultado y actualiza los puntos
+    if jugador1 == jugador2:
+        print("¡Es un empate!")
+    elif (jugador1 == opcion_piedra and jugador2 == opcion_tijera) or (jugador1 == opcion_papel and jugador2 == opcion_piedra) or (jugador1 == opcion_tijera and jugador2 == opcion_papel):
+        print(f"¡{nombre_jugador1} gana con {jugador1} contra {nombre_jugador2}!")
+        puntos_jugador1 += 2
     else:
-        # Jugador 2 elige
-        jugador2 = input(f"{nombre_jugador2}, elige piedra, papel o tijera: ").lower()
+        print(f"¡{nombre_jugador2} gana con {jugador2} contra {nombre_jugador1}!")
+        puntos_jugador2 += 2
 
-        # Verifica si la opción es válida
-        if jugador2 not in opciones:
-            print("Opción no válida. Por favor, elige piedra, papel o tijera.")
-        else:
-            # Determina el resultado y actualiza los puntos
-            if jugador1 == jugador2:
-                print("¡Es un empate!")
-            elif (jugador1 == "piedra" and jugador2 == "tijera") or (jugador1 == "papel" and jugador2 == "piedra") or (jugador1 == "tijera" and jugador2 == "papel"):
-                print(f"¡{nombre_jugador1} gana con {jugador1} contra {nombre_jugador2}!")
-                puntos_jugador1 += 2
-            else:
-                print(f"¡{nombre_jugador2} gana con {jugador2} contra {nombre_jugador1}!")
-                puntos_jugador2 += 2
+    # Muestra el puntaje actual
+    print(f"Puntaje actual: {nombre_jugador1}: {puntos_jugador1} puntos, {nombre_jugador2}: {puntos_jugador2} puntos\n")
 
-            # Incrementa el contador de rondas
-            rondas += 1
+    # Incrementa el contador de rondas
+    rondas += 1
 
 # Resultado final
 print(f"\nResultados finales:")
