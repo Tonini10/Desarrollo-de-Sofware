@@ -1,4 +1,3 @@
-import random
 
 # Opciones para el jugador
 opcion_piedra = "piedra"
