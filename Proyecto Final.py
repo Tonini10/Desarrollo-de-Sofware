@@ -1,6 +1,4 @@
-
-# Mostrar un mensaje de bienvenida personalizado
-print(! Bienvenido al juego. ¡Diviértete!")
+print("¡Bienvenido al juego!")
 
 # Opciones para el jugador
 opcion_piedra = "piedra"
